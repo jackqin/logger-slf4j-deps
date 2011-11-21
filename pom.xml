@@ -1,0 +1,70 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.colorcc</groupId>
+	<artifactId>logger-slf4j-deps</artifactId>
+	<version>0.9.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<description>Simple log4j dependency for the developing project.</description>
+
+	<properties>
+		<slf4j.version>1.6.1</slf4j.version>
+		<log4j.version>1.2.16</log4j.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${slf4j.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4j.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+	</dependencies>
+	<!-- deploy personal source into repository
+			step1. build nexus server
+			step2. add colorcc-release and colorcc-snspshot repository
+			step3. add distributionManagement elements here
+			step4. add the following server into ./m2/setting.xml
+					<server>
+						<id>colorcc-release</id>
+						<username>username</username>
+						<password>password</password>
+					</server>
+					<server>
+						<id>colorcc-snapshot</id>
+						<username>username</username>
+						<password>password</password>
+					</server>
+			step5. mvn clean package deploy This command will deploy the jar into the repository
+	-->
+	<distributionManagement>
+		<repository>
+			<id>colorcc-release</id>
+			<name>Project release Repository</name>
+			<url>http://localhost:8080/nexus/content/repositories/colorcc-release/</url>
+		</repository>
+		<snapshotRepository>
+			<id>colorcc-snapshot</id>
+			<name>Project snapshot Repository</name>
+			<url>http://localhost:8080/nexus/content/repositories/colorcc-snapshot/</url>
+		</snapshotRepository>
+	</distributionManagement>
+</project>
